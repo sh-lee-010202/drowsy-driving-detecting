@@ -10,6 +10,6 @@ from drowsiness_detector import DrowsinessDetector
 from video_stream import VideoStream
 
 face_detector = FaceDetector()
-drowsiness_detector = DrowsinessDetector()
+drowsiness_detector = DrowsinessDetector(face_detector)
 video_stream = VideoStream(face_detector, drowsiness_detector)
 video_stream.start()
