@@ -18,6 +18,7 @@ class FaceDetector:
         self.ear_threshold = ear_threshold
         self.blink_count = 0
         self.closed_eyes_frame = 0
+        self.ear = 0
 
     def calculate_eye_ratio(self, landmarks, eye_landmarks):
         left_right = np.linalg.norm(np.array([landmarks[eye_landmarks[0]].x, landmarks[eye_landmarks[0]].y]) -
@@ -32,9 +33,9 @@ class FaceDetector:
     def detect_blink(self, landmarks):
         left_eye_ratio = self.calculate_eye_ratio(landmarks, self.LEFT_EYE_LANDMARKS)
         right_eye_ratio = self.calculate_eye_ratio(landmarks, self.RIGHT_EYE_LANDMARKS)
-        ear = (left_eye_ratio + right_eye_ratio) / 2.0
+        self.ear = (left_eye_ratio + right_eye_ratio) / 2.0
 
-        if ear < self.ear_threshold:
+        if self.ear < self.ear_threshold:
             self.closed_eyes_frame += 1
         else:
             if self.closed_eyes_frame >= 1:
@@ -42,3 +43,4 @@ class FaceDetector:
             self.closed_eyes_frame = 0
 
         return self.blink_count
+    

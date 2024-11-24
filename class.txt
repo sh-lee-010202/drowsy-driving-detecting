@@ -1,7 +1,0 @@
-landmark, face(yaw), eye_single, preprocessing, video, drowsiness(졸음운전 조건 연산)
-
-
--수정할 것
-1. 영상 전처리 과정 저장(조명 보정, 반사광 제거, 랜드마크 버전)
-2. 눈 깜빡임 조건 추가
-3. 최종 영상은 텍스트만
